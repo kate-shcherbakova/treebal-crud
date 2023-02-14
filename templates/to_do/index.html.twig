@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}To Do{% endblock %}
+
+{% block body %}
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10">
+
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-5">
+
+                            <h6 class="mb-3">My to-do list</h6>
+
+                            <form action="{{ path('create_task') }}" method="POST"
+                                  class="d-flex justify-content-center align-items-center mb-4">
+                                <div class="form-outline flex-fill">
+                                    <label class="form-label" for="form3">Let's add a new task</label>
+                                    <textarea type="text" id="form3" class="form-control form-control-lg"
+                                              name="new_task_title"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-success btn-lg ms-2">Add</button>
+                            </form>
+
+                            <ul class="list-group mb-0">
+                                {% for task in all_tasks %}
+
+                                    <li
+                                            class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
+                                        <div class="d-flex align-items-center">
+                                            {{ task.title }}
+                                        </div>
+                                        <a href="{{ path('delete_task', {'id':task.id}) }}" data-mdb-toggle="tooltip"
+                                           title="Remove item">
+                                            <i class="fas fa-times text-primary"></i>
+                                        </a>
+                                    </li>
+
+                                {% endfor %}
+
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+
