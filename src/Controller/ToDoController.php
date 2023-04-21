@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Task;
+use App\Service\QuoteService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,13 @@ class ToDoController extends AbstractController
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
+    }
+
+    #[Route('/quote', name: 'quote')]
+    public function getRandomQuote(QuoteService $quoteService)
+    {
+        $quote = $quoteService->getRandomQuote();
+        return new Response($quote);
     }
 
     #[Route('/', name: 'app_to_do')]
