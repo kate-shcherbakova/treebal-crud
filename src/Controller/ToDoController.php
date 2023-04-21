@@ -50,4 +50,15 @@ class ToDoController extends AbstractController
         return $this->redirectToRoute('app_to_do');
     }
 
+    #[Route('/switch-status/{id}', name: 'switch_status')]
+    public function switchStatus(Task $id): Response
+    {
+        $task = $this->entityManager->getRepository(Task::class)->find($id);
+
+        $task->setStatus(!$task->getStatus());
+        $this->entityManager->flush();
+
+        return $this->redirectToRoute('app_to_do');
+    }
+
 }
