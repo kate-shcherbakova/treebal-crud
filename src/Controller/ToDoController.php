@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Task;
 use App\Service\QuoteService;
+use App\Service\WeatherService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +18,18 @@ class ToDoController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
+    #[Route('/', name: 'app_to_do')]
+    public function index(WeatherService $weatherService): Response
+    {
+        $all_tasks = $this->entityManager->getRepository(Task::class)->findAll();
+        $weather = $weatherService->getWeather("Rennes");
+
+        return $this->render('to_do/index.html.twig', [
+            'all_tasks' => $all_tasks,
+            'weather' => $weather,
+        ]);
+    }
+
     #[Route('/quote', name: 'quote')]
     public function getRandomQuote(QuoteService $quoteService)
     {
@@ -24,15 +37,6 @@ class ToDoController extends AbstractController
         return new Response($quote);
     }
 
-    #[Route('/', name: 'app_to_do')]
-    public function index(): Response
-    {
-        $all_tasks = $this->entityManager->getRepository(Task::class)->findAll();
-
-        return $this->render('to_do/index.html.twig', [
-            'all_tasks' => $all_tasks,
-        ]);
-    }
 
     #[Route('/create', name: 'create_task', methods: "POST")]
     public function create(Request $request): Response
