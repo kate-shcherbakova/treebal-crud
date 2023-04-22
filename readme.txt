@@ -5,8 +5,7 @@ Dans le cadre d'un projet de programmation web, un des projets personnels a ét�
 suppression et de modification de l'état des tâches avaient déjà été mises en œuvre.
 
 Pour améliorer le projet, il a été décidé d'ajouter de nouvelles fonctionnalités, qui ont été mises en œuvre par le biais de deux API. La première API ajoutée est l'API Forismatic. Elle permet de générer des citations de grands
-personnages. Afin d'ajouter l'API au projet, un nouveau QuoteService a été créé, qui reçoit les données de l'API. Un nouveau chemin /quote a été créé dans le contrôleur, à l'intérieur duquel la fonction getRandomQuote du service a été
-appelée. Un bloc a été ajouté au modèle html dans le fichier index.html.twig, qui a servi à afficher les citations. De même, une deuxième API a été ajoutée, l'API OpenWeatherMap, qui permet d'afficher le temps qu'il fait dans une ville donnée.
+personnages. Afin d'ajouter l'API au projet, un nouveau QuoteService a été créé, qui reçoit les données de l'API. Un nouveau chemin /quote a été créé dans le contrôleur, à l'intérieur duquel la fonction getRandomQuote du service a été appelée. Un bloc a été ajouté au modèle html dans le fichier index.html.twig, qui a servi à afficher les citations. De même, une deuxième API a été ajoutée, l'API OpenWeatherMap, qui permet d'afficher le temps qu'il fait dans une ville donnée.
 
 Déploiement
 Docker a été utilisé comme outil de déploiement. Les étapes à suivre pour exécuter le projet localement sont les suivantes:
